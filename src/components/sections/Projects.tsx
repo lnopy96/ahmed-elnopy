@@ -71,6 +71,12 @@ function ProjectCard({ project }: { project: Project }) {
         <span className="absolute top-3 left-3 rounded-full bg-bg/80 px-2.5 py-0.5 font-heading text-xs text-accent backdrop-blur">
           {pad(project.id)}
         </span>
+        {project.current && (
+          <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-bg/80 px-2.5 py-0.5 text-xs font-medium text-accent backdrop-blur">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-success motion-safe:animate-pulse" />
+            {ui.currentProject}
+          </span>
+        )}
         {project.imageCredit && (
           <span className="absolute right-3 bottom-2 text-[10px] text-text/70 drop-shadow">
             {ui.renderCredit} {project.imageCredit}

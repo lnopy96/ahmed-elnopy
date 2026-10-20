@@ -54,6 +54,8 @@ export interface Project {
   sector: string
   description: string
   tags: string[]
+  /** Shows a 'Current project' badge. */
+  current?: boolean
   /** Cover image; a designed placeholder is shown when missing. */
   image?: string
   /** Owner of the render, shown as a small credit. */
@@ -150,6 +152,7 @@ export interface Content {
     renderCredit: string
     countries: Record<Project['country'], string>
     current: string
+    currentProject: string
     problemLabel: string
     solutionLabel: string
     savedLabel: string
@@ -257,6 +260,7 @@ export const content: Content = {
     {
       id: 1,
       title: 'Manchester City Yas Residences by Ohana',
+      current: true,
       company: 'MTEC',
       country: 'UAE',
       sector: 'Residential',
@@ -361,7 +365,7 @@ export const content: Content = {
       end: 'Present',
       current: true,
       bullets: [
-        'Produce shop drawings for power distribution, lighting and cable containment.',
+        'Produce shop drawings for power distribution, lighting and cable containment — currently on Manchester City Yas Residences.',
         'Coordinate with consultants and clients to secure design approvals and close technical queries.',
         'Prepare technical submittals, load distribution schedules and compliance reports.',
       ],
@@ -531,6 +535,7 @@ export const content: Content = {
     renderCredit: 'Render:',
     countries: { UAE: 'UAE', KSA: 'Saudi Arabia', EG: 'Egypt' },
     current: 'Current',
+    currentProject: 'Current project',
     problemLabel: 'Problem',
     solutionLabel: 'Solution',
     savedLabel: 'Time saved',
