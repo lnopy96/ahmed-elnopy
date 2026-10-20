@@ -153,6 +153,8 @@ export interface Content {
     countries: Record<Project['country'], string>
     current: string
     currentProject: string
+    themeToLight: string
+    themeToDark: string
     problemLabel: string
     solutionLabel: string
     savedLabel: string
@@ -234,7 +236,6 @@ export const content: Content = {
     'C# / Revit API',
     'BIM 360',
     'ACC',
-    'ISO 19650',
   ],
 
   about: {
@@ -368,6 +369,7 @@ export const content: Content = {
         'Produce shop drawings for power distribution, lighting and cable containment — currently on Manchester City Yas Residences.',
         'Coordinate with consultants and clients to secure design approvals and close technical queries.',
         'Prepare technical submittals, load distribution schedules and compliance reports.',
+        'Projects: Manchester City Yas Residences (Yas Island), Elie Saab Waterfront (Al Reem Island) and Jacob & Co. Beachfront Living (Al Jurf) — all by Ohana.',
       ],
     },
     {
@@ -490,7 +492,7 @@ export const content: Content = {
       title: 'MEP BIM Diploma',
       issuer: 'Kaitech Scholarship',
       date: '2021',
-      description: 'Revit MEP, clash detection, ISO 19650, Dynamo and 4D–7D simulation.',
+      description: 'Revit MEP, clash detection, Dynamo and 4D–7D simulation.',
     },
     {
       kind: 'certification',
@@ -536,6 +538,8 @@ export const content: Content = {
     countries: { UAE: 'UAE', KSA: 'Saudi Arabia', EG: 'Egypt' },
     current: 'Current',
     currentProject: 'Current project',
+    themeToLight: 'Switch to light mode',
+    themeToDark: 'Switch to dark mode',
     problemLabel: 'Problem',
     solutionLabel: 'Solution',
     savedLabel: 'Time saved',

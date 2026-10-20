@@ -3,6 +3,7 @@ import { FiMenu, FiX } from 'react-icons/fi'
 import { content } from '../../data/content'
 import { useActiveSection } from '../../hooks/useActiveSection'
 import { Button } from '../ui/Button'
+import { ThemeToggle } from '../ui/ThemeToggle'
 
 const { identity, nav, ui } = content
 const sectionIds = nav.map((item) => item.id)
@@ -56,6 +57,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <Button href="#contact" className="hidden sm:inline-flex">
             {ui.hireMe}
           </Button>

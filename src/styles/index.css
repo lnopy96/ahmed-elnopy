@@ -20,6 +20,21 @@
   --radius-lg: 16px;
 }
 
+/* Light theme: same tokens, set on <html data-theme="light"> */
+:root[data-theme='light'] {
+  --color-bg: #f6f7fa;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef1f6;
+  --color-border: #dce2eb;
+  --color-text: #0f172a;
+  --color-muted: #4f5d75;
+  --color-accent: #b45309;
+  --color-accent-2: #d97706;
+  --color-accent-soft: rgb(180 83 9 / 0.1);
+  --color-success: #047857;
+  color-scheme: light;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
