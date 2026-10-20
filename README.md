@@ -26,14 +26,14 @@ The CV served by the "Download CV" buttons is `public/cv/Ahmed-Elnopy-CV.pdf`.
 ### GitHub Pages (automatic)
 
 `.github/workflows/deploy.yml` builds and publishes the site on every push to `main`
-to **https://lnopy96.github.io/Portfolio-/**. If the first run fails at "configure-pages",
+to **https://lnopy96.github.io/ahmed-elnopy/**. If the first run fails at "configure-pages",
 open the repo's **Settings → Pages**, set **Source** to **GitHub Actions**, then re-run
 the workflow from the **Actions** tab.
 
 ### Vercel (optional, ≈2 minutes)
 
 1. Go to <https://vercel.com/new> and sign in with GitHub.
-2. Import the `lnopy96/Portfolio-` repository. Vercel detects Vite — keep the defaults
+2. Import the `lnopy96/ahmed-elnopy` repository. Vercel detects Vite — keep the defaults
    (build `npm run build`, output `dist`) and click **Deploy**.
 3. Every push to `main` redeploys automatically.
 

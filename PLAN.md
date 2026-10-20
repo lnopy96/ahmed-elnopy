@@ -224,7 +224,7 @@ Title, meta description, OG/Twitter tags, `og.png` (1200×630), favicon, `robots
 - [x] Task 5 About · [x] Task 6 Projects · [x] Task 7 Experience · [x] Task 8 Automation + Skills
 - [x] Task 9 Education + Contact + Footer · [x] Task 10 Polish
 - [x] Task 11 SEO (meta, OG/Twitter, og.png, favicon, robots.txt, sitemap.xml, JSON-LD)
-- [x] Task 11 Deploy: GitHub Pages via Actions (`.github/workflows/deploy.yml`), live at https://lnopy96.github.io/Portfolio-/ — every push to `main` redeploys. Vercel remains an optional alternative (README). Custom domain optional.
+- [x] Task 11 Deploy: GitHub Pages via Actions (`.github/workflows/deploy.yml`), live at https://lnopy96.github.io/ahmed-elnopy/ — every push to `main` redeploys. Vercel remains an optional alternative (README). Custom domain optional.
 
 Lighthouse (local production build): mobile 93 / 100 / 100 / 100, desktop 100 / 100 / 100 / 100
 (performance / accessibility / best practices / SEO).
