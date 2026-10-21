@@ -3,6 +3,7 @@ import { content } from '../../data/content'
 import { Section, SectionHeader } from '../layout/Section'
 import { Card } from '../ui/Card'
 import { Reveal } from '../ui/Reveal'
+import { Tag } from '../ui/Tag'
 
 const { automation, sections, ui } = content
 const meta = sections.automation
@@ -22,7 +23,7 @@ export function Automation() {
                   </span>
                   <h3 className="text-xl">{tool.title}</h3>
                 </div>
-                <dl className="mt-6 flex-1 space-y-4 text-sm">
+                <dl className="mt-6 space-y-4 text-sm">
                   <div>
                     <dt className="text-xs tracking-widest text-muted uppercase">{ui.problemLabel}</dt>
                     <dd className="mt-1 text-muted">{tool.problem}</dd>
@@ -32,10 +33,27 @@ export function Automation() {
                     <dd className="mt-1">{tool.tool}</dd>
                   </div>
                 </dl>
+                <ul className="mt-4 space-y-2 text-sm text-muted">
+                  {tool.highlights.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="sr-only">{ui.stackLabel}:</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {tool.stack.map((item) => (
+                    <li key={item}>
+                      <Tag>{item}</Tag>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex-1" />
                 <p className="mt-6 flex items-center gap-2 border-t border-border pt-4 text-sm">
                   <FiClock aria-hidden="true" className="text-accent" />
-                  <span className="sr-only">{ui.savedLabel}:</span>
-                  <span className="font-medium text-accent">{tool.timeSaved}</span>
+                  <span className="sr-only">{ui.resultLabel}:</span>
+                  <span className="font-medium text-accent">{tool.result}</span>
                 </p>
               </Card>
             </Reveal>

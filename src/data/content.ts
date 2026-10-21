@@ -77,7 +77,10 @@ export interface AutomationTool {
   title: string
   problem: string
   tool: string
-  timeSaved: string
+  highlights: string[]
+  stack: string[]
+  /** Outcome line in the card footer */
+  result: string
 }
 
 export interface SkillGroup {
@@ -157,7 +160,8 @@ export interface Content {
     themeToDark: string
     problemLabel: string
     solutionLabel: string
-    savedLabel: string
+    resultLabel: string
+    stackLabel: string
     degreeLabel: string
     certLabel: string
     contactIntro: string
@@ -436,16 +440,55 @@ export const content: Content = {
 
   automation: [
     {
-      title: 'One-click circuiting',
-      problem: 'Creating electrical circuits device by device in Revit is slow and error-prone.',
-      tool: 'C# Revit add-in that creates circuits for the whole project, or for a selected circuit, in one click.',
-      timeSaved: 'Saves about 80% of the task time',
+      title: 'Electrical Auto Wiring',
+      problem: 'Circuiting devices and drawing their wiring by hand in Revit is slow and error-prone.',
+      tool: 'C# Revit add-in that circuits devices and draws clean, filleted wiring between them, for the whole project or a selected circuit.',
+      highlights: [
+        'Pick devices in order or window-select a group; lines get fillets, offsets, a line style and an optional circuit and panel.',
+        'Circuit Lines draws existing circuits across several panels and views, styled by phase.',
+        'Conduits tab turns the drawn runs into real conduits and elbows in one undo step.',
+        'MCP bridge lets an AI assistant query the model and create circuits, with preflight checks and a dry run.',
+      ],
+      stack: ['C#', 'Revit API', 'WinForms', 'Revit 2021–2026'],
+      result: 'Saves about 80% of the task time · ~290 unit tests',
     },
     {
-      title: 'One-click view dimensions',
-      problem: 'Dimensioning every view by hand takes hours on each drawing set.',
-      tool: 'C# Revit add-in that dimensions the active view in one click.',
-      timeSaved: 'Saves about 80% of the task time',
+      title: 'Lines to Conduits',
+      problem: 'Turning drawn wiring runs into modelled conduits means placing every segment and elbow by hand.',
+      tool: 'C# Revit add-in that converts any detail-line or model-line run into conduits and elbow fittings.',
+      highlights: [
+        'Groups loose lines into runs by where they join.',
+        'Sets conduit elevation from slab thickness, cover and conduit size, embedded or exposed.',
+        'Connects run ends to existing back boxes within a search radius.',
+        'Shares its data with Auto Wiring, so a run is never converted twice.',
+      ],
+      stack: ['C#', 'Revit API', 'Revit 2021–2026'],
+      result: 'Now also built into Auto Wiring as the Conduits tab',
+    },
+    {
+      title: 'Auto Dimension',
+      problem: 'Dimensioning every device in every view by hand takes hours on each drawing set.',
+      tool: 'C# Revit add-in that dimensions electrical devices to walls, curtain-wall mullions and columns, including in linked models.',
+      highlights: [
+        'Keeps each dimension inside the device’s room and chains devices that line up.',
+        'Re-runs only add what is missing.',
+        'A report lists created, skipped and failed items.',
+      ],
+      stack: ['C#', 'Revit API', 'WPF', 'Revit 2026'],
+      result: 'Saves about 80% of the task time',
+    },
+    {
+      title: 'Model-to-BOQ add-in',
+      problem: 'Bills of quantities and material submittals are counted by hand and fall behind every design change.',
+      tool: 'pyRevit extension that turns the electrical model into the client’s BOQ and Material Submittal, built for Manchester City Yas Residences.',
+      highlights: [
+        'Writes BOQ code, description, unit, quantity and level onto every element from a family/type map.',
+        'Conduit and cable tray quantities follow their length live as you model.',
+        'Checks for unmapped and duplicate items, colours the model by code and tracks changes since the last issue.',
+        'One-click exports: client BOQ, detailed BOQ and Material Submittal (Excel and HTML).',
+      ],
+      stack: ['pyRevit', 'Python', 'Revit API', 'IUpdater'],
+      result: 'Full villa BOQ straight from the model · ~390 unit tests',
     },
   ],
 
@@ -542,7 +585,8 @@ export const content: Content = {
     themeToDark: 'Switch to dark mode',
     problemLabel: 'Problem',
     solutionLabel: 'Solution',
-    savedLabel: 'Time saved',
+    resultLabel: 'Result',
+    stackLabel: 'Built with',
     degreeLabel: 'Degree',
     certLabel: 'Certification',
     contactIntro:
