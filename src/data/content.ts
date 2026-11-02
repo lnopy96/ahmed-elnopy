@@ -190,7 +190,7 @@ export const content: Content = {
     title: 'Electrical Engineer · MEP & BIM',
     badge: 'Open to opportunities · Abu Dhabi, UAE',
     valueProp:
-      'I turn electrical designs into coordinated, buildable BIM models and shop drawings — across the UAE, Saudi Arabia and Egypt.',
+      'Electrical engineer, 6+ years in MEP design and shop drawings across the UAE, Saudi Arabia and Egypt.',
     email: 'lnopy67@gmail.com',
     phones: [
       { label: 'UAE', number: '+971 50 180 0351' },
@@ -216,11 +216,11 @@ export const content: Content = {
   sections: {
     about: { id: 'about', number: '01', label: 'Profile', heading: 'From load schedule to site-ready drawing.' },
     projects: { id: 'projects', number: '02', label: 'Projects', heading: 'Selected work across three countries.' },
-    experience: { id: 'experience', number: '03', label: 'Experience', heading: 'Six companies, one discipline.' },
+    experience: { id: 'experience', number: '03', label: 'Experience', heading: 'Experience across three countries.' },
     automation: { id: 'automation', number: '04', label: 'Automation & Tools', heading: 'One click instead of one afternoon.' },
     skills: { id: 'skills', number: '05', label: 'Skills', heading: 'What I bring to a project team.' },
     education: { id: 'education', number: '06', label: 'Education & Certifications', heading: 'Built on engineering, sharpened by BIM.' },
-    contact: { id: 'contact', number: '07', label: 'Contact', heading: "Let's build something coordinated." },
+    contact: { id: 'contact', number: '07', label: 'Contact', heading: "Let's work together." },
   },
 
   stats: [
@@ -237,7 +237,6 @@ export const content: Content = {
     'ETAP',
     'DIALux evo',
     'Dynamo',
-    'C# / Revit API',
     'BIM 360',
     'ACC',
   ],
@@ -353,7 +352,7 @@ export const content: Content = {
       title: 'District 5 – Marakez',
       company: 'Solid Construction',
       country: 'EG',
-      sector: 'Mixed-use',
+      sector: 'Residential',
       description: 'Optimized electrical layouts to cut rework during construction.',
       tags: ['Layout Optimization', 'RFIs', 'Shop Drawings'],
       image: '/images/projects/district5.webp',
@@ -496,7 +495,7 @@ export const content: Content = {
     {
       letter: 'A',
       title: 'BIM & Software',
-      skills: ['Revit', 'Navisworks', 'AutoCAD', 'BIM 360 / ACC', 'Dynamo', 'C# / Revit API'],
+      skills: ['Revit', 'Navisworks', 'AutoCAD', 'BIM 360 / ACC', 'Dynamo'],
     },
     {
       letter: 'B',
@@ -511,7 +510,7 @@ export const content: Content = {
     {
       letter: 'D',
       title: 'Technical Office',
-      skills: ['Shop drawings', 'Submittals', 'BOQ & QTO', 'RFIs', 'Consultant coordination'],
+      skills: ['Shop drawings', 'Submittals', 'BOQ', 'RFIs'],
     },
   ],
 
@@ -535,7 +534,7 @@ export const content: Content = {
       title: 'MEP BIM Diploma',
       issuer: 'Kaitech Scholarship',
       date: '2021',
-      description: 'Revit MEP, clash detection, Dynamo and 4D–7D simulation.',
+      description: 'Revit MEP, clash detection and Dynamo.',
     },
     {
       kind: 'certification',
