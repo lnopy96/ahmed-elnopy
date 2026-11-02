@@ -214,7 +214,7 @@ export const content: Content = {
   ],
 
   sections: {
-    about: { id: 'about', number: '01', label: 'Profile', heading: 'From load schedule to site-ready drawing.' },
+    about: { id: 'about', number: '01', label: 'Profile', heading: 'Electrical engineering, from scratch to site.' },
     projects: { id: 'projects', number: '02', label: 'Projects', heading: 'Selected work across three countries.' },
     experience: { id: 'experience', number: '03', label: 'Experience', heading: 'Experience across three countries.' },
     automation: { id: 'automation', number: '04', label: 'Automation & Tools', heading: 'One click instead of one afternoon.' },
