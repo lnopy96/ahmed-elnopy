@@ -45,6 +45,7 @@ export function seo(base = '/'): Plugin {
     ...(siteUrl
       ? [`<link rel="canonical" href="${siteUrl}/" />`, `<meta property="og:url" content="${siteUrl}/" />`]
       : []),
+    `<link rel="manifest" href="${base}site.webmanifest" />`,
     `<link rel="preload" as="image" href="${base}images/profile-480.webp" imagesrcset="${base}images/profile-480.webp 480w, ${base}images/profile-640.webp 640w, ${base}images/profile.webp 768w" imagesizes="(min-width: 768px) 384px, 90vw" fetchpriority="high" />`,
     `<script type="application/ld+json">${JSON.stringify(person).replace(/</g, '\\u003c')}</script>`,
   ].join('\n    ')
@@ -59,6 +60,29 @@ export function seo(base = '/'): Plugin {
       if (!siteUrl) this.warn('SITE_URL not set: sitemap.xml and absolute OG URLs are skipped.')
       this.emitFile({
         type: 'asset',
+        fileName: 'site.webmanifest',
+        source: JSON.stringify(
+          {
+            name: identity.name,
+            short_name: identity.initials,
+            description: s.description,
+            start_url: base,
+            scope: base,
+            display: 'standalone',
+            background_color: '#070B14',
+            theme_color: '#070B14',
+            icons: [
+              { src: `${base}apple-touch-icon.png`, sizes: '180x180', type: 'image/png' },
+              { src: `${base}favicon.svg`, sizes: 'any', type: 'image/svg+xml' },
+            ],
+          },
+          null,
+          2,
+        ),
+      })
+      this.emitFile({ type: 'asset', fileName: '404.html', source: notFoundPage(base, identity.name) })
+      this.emitFile({
+        type: 'asset',
         fileName: 'robots.txt',
         source: `User-agent: *\nAllow: /\n${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ''}`,
       })
@@ -71,4 +95,39 @@ export function seo(base = '/'): Plugin {
       }
     },
   }
+}
+
+/** Standalone 404 page in the site's dark theme; GitHub Pages serves it for unknown paths. */
+function notFoundPage(base: string, name: string) {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Page not found · ${name}</title>
+    <link rel="icon" type="image/svg+xml" href="${base}favicon.svg" />
+    <style>
+      :root { color-scheme: dark; }
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px; box-sizing: border-box;
+        background: #070b14; color: #e8ecf4; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; text-align: center; }
+      p.code { margin: 0; color: #f5a524; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
+      h1 { margin: 12px 0 8px; font-size: clamp(28px, 6vw, 44px); }
+      p { margin: 0 0 28px; color: #8a96ad; }
+      a { display: inline-block; border-radius: 999px; background: #f5a524; color: #070b14; padding: 12px 22px;
+        font-weight: 600; text-decoration: none; }
+      a:hover { background: #ffc861; }
+      a:focus-visible { outline: 2px solid #f5a524; outline-offset: 3px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="code">404</p>
+      <h1>This page doesn\u2019t exist.</h1>
+      <p>The link may be old or mistyped.</p>
+      <a href="${base}">Back to ${name}</a>
+    </main>
+  </body>
+</html>
+`
 }

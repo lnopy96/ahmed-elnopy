@@ -179,7 +179,7 @@ export const content: Content = {
   seo: {
     title: 'Ahmed Gamal Elnopy — Electrical Engineer · MEP & BIM',
     description:
-      'Electrical engineer in Abu Dhabi delivering MEP electrical design, BIM coordination and shop drawings across the UAE, Saudi Arabia and Egypt. Revit, Navisworks, Dynamo and C# automation.',
+      'Electrical engineer in Abu Dhabi with 6+ years in MEP design, BIM coordination and shop drawings across the UAE, Saudi Arabia and Egypt. Revit, Navisworks and Dynamo.',
     ogImage: '/og.png',
     ogImageAlt: 'Ahmed Gamal Elnopy — Electrical Engineer, MEP & BIM',
     knowsAbout: ['Electrical design', 'BIM', 'Revit', 'Navisworks', 'Shop drawings', 'Light current systems', 'Revit API'],
