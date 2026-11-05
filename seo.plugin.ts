@@ -45,7 +45,7 @@ export function seo(base = '/'): Plugin {
     ...(siteUrl
       ? [`<link rel="canonical" href="${siteUrl}/" />`, `<meta property="og:url" content="${siteUrl}/" />`]
       : []),
-    `<link rel="preload" as="image" href="${base}images/profile-480.webp" imagesrcset="${base}images/profile-480.webp 480w, ${base}images/profile.webp 768w" imagesizes="(min-width: 768px) 384px, 90vw" fetchpriority="high" />`,
+    `<link rel="preload" as="image" href="${base}images/profile-480.webp" imagesrcset="${base}images/profile-480.webp 480w, ${base}images/profile-640.webp 640w, ${base}images/profile.webp 768w" imagesizes="(min-width: 768px) 384px, 90vw" fetchpriority="high" />`,
     `<script type="application/ld+json">${JSON.stringify(person).replace(/</g, '\\u003c')}</script>`,
   ].join('\n    ')
 

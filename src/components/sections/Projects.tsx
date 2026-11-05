@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, m } from 'motion/react'
 import { useMemo, useState } from 'react'
 import { FiArrowUpRight, FiMapPin } from 'react-icons/fi'
 import { content, type Project } from '../../data/content'
@@ -152,10 +152,10 @@ export function Projects() {
           </button>
         </div>
       ) : (
-        <motion.ul layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <m.ul layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((project) => (
-              <motion.li
+              <m.li
                 key={project.id}
                 layout
                 initial={{ opacity: 0, scale: 0.96 }}
@@ -164,10 +164,10 @@ export function Projects() {
                 transition={{ duration: 0.25 }}
               >
                 <ProjectCard project={project} />
-              </motion.li>
+              </m.li>
             ))}
           </AnimatePresence>
-        </motion.ul>
+        </m.ul>
       )}
     </Section>
   )

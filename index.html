@@ -10,7 +10,10 @@
     <script>
       try {
         var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
-        if (t === 'light') document.documentElement.dataset.theme = 'light'
+        if (t === 'light') {
+          document.documentElement.dataset.theme = 'light'
+          document.querySelector('meta[name="theme-color"]').content = '#f6f7fa'
+        }
       } catch (e) {}
     </script>
   </head>

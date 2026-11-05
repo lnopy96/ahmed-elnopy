@@ -57,7 +57,7 @@ export function Hero() {
             {identity.photo ? (
               <img
                 src={asset(identity.photo)}
-                srcSet={`${asset(identity.photo.replace('.webp', '-480.webp'))} 480w, ${asset(identity.photo)} 768w`}
+                srcSet={`${asset(identity.photo.replace('.webp', '-480.webp'))} 480w, ${asset(identity.photo.replace('.webp', '-640.webp'))} 640w, ${asset(identity.photo)} 768w`}
                 sizes="(min-width: 768px) 384px, 90vw"
                 alt={identity.photoAlt}
                 width={768}
