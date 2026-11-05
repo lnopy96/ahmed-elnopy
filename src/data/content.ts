@@ -369,10 +369,10 @@ export const content: Content = {
       end: 'Present',
       current: true,
       bullets: [
-        'Produce shop drawings for power distribution, lighting and cable containment — currently on Manchester City Yas Residences.',
+        'Produce shop drawings for power distribution, lighting and cable containment on Manchester City Yas Residences (Yas Island), Elie Saab Waterfront (Al Reem Island) and Jacob & Co. Beachfront Living (Al Jurf), all by Ohana.',
         'Coordinate with consultants and clients to secure design approvals and close technical queries.',
         'Prepare technical submittals, load distribution schedules and compliance reports.',
-        'Projects: Manchester City Yas Residences (Yas Island), Elie Saab Waterfront (Al Reem Island) and Jacob & Co. Beachfront Living (Al Jurf) — all by Ohana.',
+        'Support site teams with design clarifications and drawing revisions.',
       ],
     },
     {
@@ -495,22 +495,32 @@ export const content: Content = {
     {
       letter: 'A',
       title: 'BIM & Software',
-      skills: ['Revit', 'Navisworks', 'AutoCAD', 'BIM 360 / ACC', 'Dynamo'],
+      skills: ['Revit', 'Navisworks', 'AutoCAD', 'Dynamo', 'ETAP', 'DIALux evo', 'BIM 360 / ACC'],
     },
     {
       letter: 'B',
       title: 'Electrical Design',
-      skills: ['Load schedules', 'Single-line diagrams', 'LV/MV distribution', 'ETAP', 'DIALux evo', 'Earthing & lightning protection'],
+      skills: [
+        'LV/MV distribution',
+        'Load schedules',
+        'Single-line diagrams',
+        'Cable sizing',
+        'Voltage drop',
+        'Short-circuit calculations',
+        'Lighting calculations',
+        'Earthing & lightning protection',
+        'ADDC/AADC EWR',
+      ],
     },
     {
       letter: 'C',
       title: 'Light Current',
-      skills: ['Fire alarm', 'Data networks', 'CCTV', 'Sound systems'],
+      skills: ['Fire alarm (NFPA 72)', 'Data networks', 'CCTV', 'Sound systems'],
     },
     {
       letter: 'D',
       title: 'Technical Office',
-      skills: ['Shop drawings', 'Submittals', 'BOQ', 'RFIs'],
+      skills: ['Shop drawings', 'IFC drawings', 'Submittals', 'BOQ', 'RFIs', 'MEP coordination', 'Clash detection'],
     },
   ],
 
