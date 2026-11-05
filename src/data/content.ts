@@ -153,6 +153,8 @@ export interface Content {
     resetFilters: string
     viewProject: string
     renderCredit: string
+    enlargeImage: string
+    closeImage: string
     countries: Record<Project['country'], string>
     current: string
     currentProject: string
@@ -587,6 +589,8 @@ export const content: Content = {
     resetFilters: 'Reset filters',
     viewProject: 'View project',
     renderCredit: 'Render:',
+    enlargeImage: 'View larger image:',
+    closeImage: 'Close image',
     countries: { UAE: 'UAE', KSA: 'Saudi Arabia', EG: 'Egypt' },
     current: 'Current',
     currentProject: 'Current project',

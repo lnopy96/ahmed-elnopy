@@ -1,6 +1,6 @@
 import { AnimatePresence, m } from 'motion/react'
-import { useMemo, useState } from 'react'
-import { FiArrowUpRight, FiMapPin } from 'react-icons/fi'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { FiArrowUpRight, FiMapPin, FiMaximize2, FiX } from 'react-icons/fi'
 import { content, type Project } from '../../data/content'
 import { asset } from '../../lib/asset'
 import { Section, SectionHeader } from '../layout/Section'
@@ -63,22 +63,37 @@ function Cover({ project }: { project: Project }) {
   )
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, onEnlarge }: { project: Project; onEnlarge: (project: Project) => void }) {
   return (
     <Card interactive className="group flex h-full flex-col overflow-hidden">
       <div className="relative aspect-[16/10] overflow-hidden border-b border-border">
         <Cover project={project} />
-        <span className="absolute top-3 left-3 rounded-full bg-bg/80 px-2.5 py-0.5 font-heading text-xs text-accent backdrop-blur">
+        {project.image && (
+          <button
+            type="button"
+            onClick={() => onEnlarge(project)}
+            aria-label={`${ui.enlargeImage} ${project.title}`}
+            className="absolute inset-0 flex cursor-zoom-in items-center justify-center bg-bg/0 transition-colors duration-200 hover:bg-bg/30 focus-visible:bg-bg/30"
+          >
+            <span
+              aria-hidden="true"
+              className="flex size-10 items-center justify-center rounded-full bg-bg/80 text-text opacity-0 backdrop-blur transition-opacity duration-200 group-hover:opacity-100 [button:focus-visible>&]:opacity-100"
+            >
+              <FiMaximize2 size={16} />
+            </span>
+          </button>
+        )}
+        <span className="pointer-events-none absolute top-3 left-3 rounded-full bg-bg/80 px-2.5 py-0.5 font-heading text-xs text-accent backdrop-blur">
           {pad(project.id)}
         </span>
         {project.current && (
-          <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-bg/80 px-2.5 py-0.5 text-xs font-medium text-accent backdrop-blur">
+          <span className="pointer-events-none absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-bg/80 px-2.5 py-0.5 text-xs font-medium text-accent backdrop-blur">
             <span aria-hidden="true" className="size-1.5 rounded-full bg-success motion-safe:animate-pulse" />
             {ui.currentProject}
           </span>
         )}
         {project.imageCredit && (
-          <span className="absolute right-3 bottom-2 text-[10px] text-text/70 drop-shadow">
+          <span className="pointer-events-none absolute right-3 bottom-2 text-[10px] text-text/70 drop-shadow">
             {ui.renderCredit} {project.imageCredit}
           </span>
         )}
@@ -114,9 +129,67 @@ function ProjectCard({ project }: { project: Project }) {
   )
 }
 
+/** Full-size image viewer on a native <dialog>: Escape, focus trapping and focus return come from the browser. */
+function ImageViewer({ project, onClose }: { project: Project | null; onClose: () => void }) {
+  const ref = useRef<HTMLDialogElement>(null)
+  // Natural width/height of the open image, so the frame hugs it instead of letterboxing.
+  const [ratio, setRatio] = useState(16 / 10)
+
+  useEffect(() => {
+    const dialog = ref.current
+    if (!dialog) return
+    if (project && !dialog.open) dialog.showModal()
+    if (!project && dialog.open) dialog.close()
+    // Keep the page behind the viewer from scrolling while it is open.
+    document.documentElement.style.overflow = project ? 'hidden' : ''
+  }, [project])
+
+  return (
+    <dialog
+      ref={ref}
+      onClose={onClose}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+      aria-label={project?.title}
+      className="m-auto max-h-[92vh] w-fit max-w-[94vw] overflow-visible bg-transparent p-0 text-text backdrop:bg-bg/85 backdrop:backdrop-blur-sm"
+    >
+      {project?.image && (
+        <figure
+          className="relative overflow-hidden rounded-lg border border-border bg-surface"
+          style={{ width: `min(94vw, calc(80vh * ${ratio}))` }}
+        >
+          <img
+            src={asset(project.image)}
+            alt={project.title}
+            onLoad={(e) => setRatio(e.currentTarget.naturalWidth / e.currentTarget.naturalHeight)}
+            className="block h-auto max-h-[80vh] w-full object-contain"
+          />
+          <figcaption className="flex items-center justify-between gap-4 px-5 py-3 text-sm">
+            <span className="font-medium">{project.title}</span>
+            {project.imageCredit && (
+              <span className="text-xs text-muted">
+                {ui.renderCredit} {project.imageCredit}
+              </span>
+            )}
+          </figcaption>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={ui.closeImage}
+            autoFocus
+            className="absolute top-3 right-3 flex size-10 items-center justify-center rounded-full bg-bg/80 text-text backdrop-blur transition-colors duration-200 hover:text-accent"
+          >
+            <FiX size={18} aria-hidden="true" />
+          </button>
+        </figure>
+      )}
+    </dialog>
+  )
+}
+
 export function Projects() {
   const [sector, setSector] = useState(ALL)
   const [country, setCountry] = useState(ALL)
+  const [enlarged, setEnlarged] = useState<Project | null>(null)
 
   const visible = useMemo(
     () =>
@@ -163,12 +236,13 @@ export function Projects() {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.25 }}
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={project} onEnlarge={setEnlarged} />
               </m.li>
             ))}
           </AnimatePresence>
         </m.ul>
       )}
+      <ImageViewer project={enlarged} onClose={() => setEnlarged(null)} />
     </Section>
   )
 }
