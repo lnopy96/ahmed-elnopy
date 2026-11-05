@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
 const query = '(prefers-reduced-motion: reduce)'
 
+const subscribe = (onChange: () => void) => {
+  const mql = window.matchMedia(query)
+  mql.addEventListener('change', onChange)
+  return () => mql.removeEventListener('change', onChange)
+}
+
+/** Live `prefers-reduced-motion` flag. False while prerendering, so the static HTML matches the first client render. */
 export function useReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(() => window.matchMedia(query).matches)
-
-  useEffect(() => {
-    const mql = window.matchMedia(query)
-    const onChange = () => setReduced(mql.matches)
-    mql.addEventListener('change', onChange)
-    return () => mql.removeEventListener('change', onChange)
-  }, [])
-
-  return reduced
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(query).matches,
+    () => false,
+  )
 }

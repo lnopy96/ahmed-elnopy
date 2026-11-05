@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useSyncExternalStore } from 'react'
 import { FiMoon, FiSun } from 'react-icons/fi'
 import { content } from '../../data/content'
 
@@ -18,10 +18,17 @@ function applyTheme(theme: Theme) {
   }
 }
 
+const noop = () => () => {}
+
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(() =>
-    document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
+  // The pre-paint script in index.html sets data-theme; prerendered HTML assumes dark until hydration reads it.
+  const initial = useSyncExternalStore<Theme>(
+    noop,
+    () => (document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'),
+    () => 'dark',
   )
+  const [chosen, setTheme] = useState<Theme | null>(null)
+  const theme = chosen ?? initial
   const next: Theme = theme === 'light' ? 'dark' : 'light'
 
   return (
