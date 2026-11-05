@@ -1,5 +1,6 @@
 import { FiMapPin } from 'react-icons/fi'
 import { content } from '../../data/content'
+import { duration } from '../../lib/duration'
 import { Section, SectionHeader } from '../layout/Section'
 import { Reveal } from '../ui/Reveal'
 
@@ -24,6 +25,10 @@ export function Experience() {
             <Reveal delay={i * 0.05} className="md:pt-0.5 md:text-right">
               <p className="text-sm font-medium tabular-nums text-text">
                 {job.start} – {job.end}
+              </p>
+              {/* "Present" is measured from today, which can differ from the prerender date. */}
+              <p className="mt-1 text-xs text-muted tabular-nums" suppressHydrationWarning>
+                {duration(job.start, job.end)}
               </p>
               {job.current && (
                 <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium text-accent">

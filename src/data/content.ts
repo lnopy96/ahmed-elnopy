@@ -157,6 +157,7 @@ export interface Content {
     closeImage: string
     countries: Record<Project['country'], string>
     current: string
+    duration: { year: string; years: string; month: string; months: string }
     currentProject: string
     themeToLight: string
     themeToDark: string
@@ -593,6 +594,7 @@ export const content: Content = {
     closeImage: 'Close image',
     countries: { UAE: 'UAE', KSA: 'Saudi Arabia', EG: 'Egypt' },
     current: 'Current',
+    duration: { year: 'yr', years: 'yrs', month: 'mo', months: 'mos' },
     currentProject: 'Current project',
     themeToLight: 'Switch to light mode',
     themeToDark: 'Switch to dark mode',
