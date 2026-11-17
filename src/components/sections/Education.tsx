@@ -3,6 +3,7 @@ import { content } from '../../data/content'
 import { Section, SectionHeader } from '../layout/Section'
 import { Card } from '../ui/Card'
 import { Reveal } from '../ui/Reveal'
+import { Tag } from '../ui/Tag'
 
 const { education, sections, ui } = content
 const meta = sections.education
@@ -41,8 +42,11 @@ export function Education() {
                 <Card interactive className="h-full p-5">
                   <div className="flex items-start justify-between gap-3">
                     <FiAward size={18} aria-hidden="true" className="mt-1 shrink-0 text-accent" />
-                    <span className="rounded-full border border-border px-2 py-0.5 text-xs tabular-nums text-muted">
-                      {c.date}
+                    <span className="flex flex-wrap justify-end gap-1.5">
+                      {c.inProgress && <Tag tone="accent">{ui.inProgress}</Tag>}
+                      <span className="rounded-full border border-border px-2 py-0.5 text-xs tabular-nums text-muted">
+                        {c.date}
+                      </span>
                     </span>
                   </div>
                   <h3 className="mt-3 text-base">{c.title}</h3>

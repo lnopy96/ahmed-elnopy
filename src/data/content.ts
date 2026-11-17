@@ -95,6 +95,17 @@ export interface Cert {
   date: string
   description?: string
   kind: 'degree' | 'certification'
+  /** Shows an 'In progress' badge next to the date. */
+  inProgress?: boolean
+}
+
+export interface CourseworkStudy {
+  title: string
+  description: string
+  /** Cover image from the presentation deck; a placeholder is shown when missing. */
+  image?: string
+  /** Link to the recorded video explanation. */
+  video?: string
 }
 
 export interface SectionMeta {
@@ -129,6 +140,7 @@ export interface Content {
   automation: AutomationTool[]
   skills: SkillGroup[]
   education: Cert[]
+  coursework: { label: string; heading: string; intro: string; tag: string; studies: CourseworkStudy[] }
   footer: { tagline: string }
   ui: {
     skipLink: string
@@ -153,6 +165,9 @@ export interface Content {
     resetFilters: string
     viewProject: string
     renderCredit: string
+    mediaComingSoon: string
+    watchVideo: string
+    inProgress: string
     enlargeImage: string
     closeImage: string
     countries: Record<Project['country'], string>
@@ -537,6 +552,15 @@ export const content: Content = {
     },
     {
       kind: 'certification',
+      title: 'Technical Coordination Diploma',
+      issuer: 'KAITECH',
+      date: '2026',
+      inProgress: true,
+      description:
+        'Multidisciplinary coordination across architecture, structure, HVAC, fire protection, fire life safety, electrical & ICT and infrastructure, plus advanced clash detection in Navisworks.',
+    },
+    {
+      kind: 'certification',
       title: 'Mastering Revit API',
       issuer: 'Elzohry Academy',
       date: '2023',
@@ -564,6 +588,27 @@ export const content: Content = {
     },
   ],
 
+  coursework: {
+    label: 'Coursework',
+    heading: 'Coordination studies',
+    intro: 'Each study is a presentation with 3D figures and real photos, plus a recorded video explanation.',
+    tag: 'KAITECH Technical Coordination Diploma',
+    studies: [
+      {
+        title: 'Wet Areas & Shafts',
+        description: 'How architecture, structure and MEP services fit together in wet areas and service shafts.',
+      },
+      {
+        title: 'Smoke Control',
+        description: 'Coordinating smoke control with the building and the other services.',
+      },
+      {
+        title: 'Openings & Penetrations',
+        description: 'Planning openings and penetrations so every discipline passes through cleanly.',
+      },
+    ],
+  },
+
   footer: {
     tagline: 'Electrical design, BIM coordination and automation.',
   },
@@ -590,6 +635,9 @@ export const content: Content = {
     resetFilters: 'Reset filters',
     viewProject: 'View project',
     renderCredit: 'Render:',
+    mediaComingSoon: 'Slides and video coming soon',
+    watchVideo: 'Watch video',
+    inProgress: 'In progress',
     enlargeImage: 'View larger image:',
     closeImage: 'Close image',
     countries: { UAE: 'UAE', KSA: 'Saudi Arabia', EG: 'Egypt' },

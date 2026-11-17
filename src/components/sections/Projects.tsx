@@ -7,6 +7,7 @@ import { Section, SectionHeader } from '../layout/Section'
 import { Card } from '../ui/Card'
 import { FilterChips } from '../ui/FilterChips'
 import { Tag } from '../ui/Tag'
+import { Coursework } from './Coursework'
 
 const { projects, sections, ui } = content
 const meta = sections.projects
@@ -242,6 +243,7 @@ export function Projects() {
           </AnimatePresence>
         </m.ul>
       )}
+      <Coursework />
       <ImageViewer project={enlarged} onClose={() => setEnlarged(null)} />
     </Section>
   )
